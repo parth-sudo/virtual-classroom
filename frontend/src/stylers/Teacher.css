@@ -1,0 +1,7 @@
+.parent {
+    overflow: 'auto';
+    height: 100vh;
+    display: 'block';
+    max-width: 300; 
+    margin-left: 20;
+}
