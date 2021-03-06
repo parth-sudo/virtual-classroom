@@ -43,7 +43,7 @@ export default class Staff extends Component {
              size="small" to="/" component={Link} > Back </Button>
         </div>
 
-         {/* Button for new teacher profile */}
+         {/* for new teacher profile */}
 
          <div style={{ padding: 20 }}>
           <h3 style={{ fontFamily: "Helvetica", color: "Red" }}>

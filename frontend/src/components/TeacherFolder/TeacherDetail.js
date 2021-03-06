@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Teacher from "./Teacher.js";
 import { Button } from "@material-ui/core";
+import CreateRoom from "../RoomFolder/CreateRoom.js";
 
 // use this component for taking attendance as well.
 const styler = {
@@ -22,10 +23,9 @@ export default class TeacherDetail extends Component {
       code: "",
       studentCount: 0,
       attendenceTaken: false,
-      toggle : false,
+      showRoomForm : false,
     };
     this.teacherName = this.props.match.params.teacherName;
-    this.showOTC = this.showOTC.bind(this);
     this.getTeacherDetails();
   }
 
@@ -45,13 +45,6 @@ export default class TeacherDetail extends Component {
       });
   }
 
-  showOTC() {
-      this.setState({
-          toggle : true,
-      })
-      console.log(this.state.toggle);
-  }
-
   render() {
     return (
       <div style={styler}>
@@ -65,7 +58,7 @@ export default class TeacherDetail extends Component {
 
         <br />
 
-        {this.state.toggle ? (
+        {/* {this.state.showRoomForm ? (
             <div style={{color : 'goldenrod'}}> 
              <p > Copy this and share with students: <strong style={{color : 'grey'}}> {this.state.code} </strong> </p>
            </div>
@@ -73,7 +66,17 @@ export default class TeacherDetail extends Component {
             <Button variant="contained" color="secondary" onClick={this.showOTC}>
             Generate OTC (One Time Code)
           </Button>
-        )}
+        )} */}
+
+           <Button onClick={() => { var f = this.state.showRoomForm; 
+              return this.setState({showRoomForm : !f})
+            }} 
+        variant="contained" color="primary">Create Room</Button>
+
+        {this.state.showRoomForm ? (
+          <CreateRoom teacherName = {this.teacherName}/>
+        ) : null}
+           
 
       </div>
     );

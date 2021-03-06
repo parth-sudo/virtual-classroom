@@ -7,6 +7,6 @@ urlpatterns = [
     path('<str:teacherName>/', index),
     path('studentArea/', index),
     # path('student/', index),
-    # path('rooms/', index),
+    path('rooms/', index),
 
 ]

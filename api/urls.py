@@ -1,15 +1,9 @@
 from django.urls import path
 from .views import (
-    TeacherCreateView, 
-    TeacherListView, 
-    TeacherUpdateView, 
-    TeacherDeleteView, 
+    TeacherCreateView, TeacherListView, TeacherUpdateView, TeacherDeleteView, 
     GetTeacherName,
-
-    StudentCreateView,
-    StudentUpdateView,
-    StudentListView,
-    StudentDeleteView,
+    StudentCreateView, StudentUpdateView, StudentListView, StudentDeleteView,
+    RoomCreateView, RoomListView
 )
 
 
@@ -25,6 +19,7 @@ urlpatterns = [
     path('update-student/<pk>/', StudentUpdateView.as_view()),
     path('delete-student/<pk>/', StudentDeleteView.as_view()),
 
-    # path('create-room/',)
+    path('create-room/', RoomCreateView.as_view()),
+    path('room-list/', RoomListView.as_view()),
 
 ]

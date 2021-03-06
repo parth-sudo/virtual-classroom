@@ -12,14 +12,8 @@ def generate_unique_code():
     return code
 
 class Teacher(models.Model):
-    ds = 'Data Structures'
-    algo = 'Algorithms'
-    oops = 'Object Oriented Programming'
-    SUBJECT_CHOICES = [(ds, 'Data Structures'),(algo, 'Algorithms'),
-                        (oops, 'Object Oriented Programming')]
-    
     name = models.CharField(max_length=30)
-    subject = models.CharField(max_length=30, choices=SUBJECT_CHOICES, default=None)
+    subject = models.CharField(max_length=30, default=None)
     code = models.CharField(max_length=8, default=generate_unique_code, unique=True)
     student_count = models.IntegerField(default=0)
     attendance_taken = models.BooleanField(default=False)
@@ -45,6 +39,11 @@ class Student(models.Model):
     def __str__(self):
         return self.first_name
 
+class Room(models.Model):
+    teacher_name = models.CharField(max_length=30)
+    subject = models.CharField(max_length=50)
+    max_students_allowed = models.IntegerField(default=0)
+    code = models.CharField(max_length=8, default=generate_unique_code, unique=True)
 
 
     

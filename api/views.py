@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .models import Teacher,Student
-from .serializers import TeacherSerializer, StudentSerializer
+from .models import Teacher,Student,Room
+from .serializers import TeacherSerializer, StudentSerializer, RoomSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -57,5 +57,12 @@ class StudentDeleteView(generics.DestroyAPIView):
      queryset = Student.objects.all()
      serializer_class = StudentSerializer
 
-# class CreateRoomView(generics.CreateAPIView):
+
+class RoomCreateView(generics.CreateAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+class RoomListView(generics.ListAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer    
 
