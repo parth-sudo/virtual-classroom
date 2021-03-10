@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import Classroom from "../Classroom.js";
 
 
 const useStyles = makeStyles({
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
     borderStyle: "ridge",
     margin: "auto",
     width: "400px",
-    border: "3px solid green",
+    border: "3px solid #AECCC8",
     padding: "10px",
   },
   bullet: {
@@ -31,11 +32,11 @@ const useStyles = makeStyles({
   },
 });
 
-function Teacher(props) {
+function Room(props) {
   const classes = useStyles();
 
   return (
-  
+
       <Card className={classes.root}>
         <CardContent>
           <Typography
@@ -43,7 +44,7 @@ function Teacher(props) {
             color="textSecondary"
             gutterBottom
           >
-           Room # {props.key}
+           Room # {props.id}
           </Typography>
           <Typography variant="h5" component="h2">
             {props.teacherName}
@@ -57,38 +58,27 @@ function Teacher(props) {
           </Typography>
 
           <Typography variant="body2" component="p">
-            Bio.
+            ...
             <br />
           </Typography>
         </CardContent>
         <CardActions>
-          {props.showTDButton === "true" ? (
-            <Button
-              variant="outlined"
-              color="secondary"
-              size="small"
-              to={`/${props.name}`}
-              component={Link}
-            >
-              {" "}
-              Take Attendance{" "}
-            </Button>
-          ) : (
-            <Button
-              variant="outlined"
-              color="primary"
-              size="small"
-              to="/staff"
-              component={Link}
-            >
-              {" "}
-              Back{" "}
-            </Button>
-          )}
+
+        <Link
+        to={{
+          pathname: `/rooms/${props.id}`,
+          state: { roomID: props.id }
+        }}
+      >
+        <Button color="secondary" variant="outlined"> 
+         Enter {props.teacherName}'s room
+        </Button>
+      </Link>
+        
         </CardActions>
       </Card>
   
   );
 }
 
-export default Teacher;
+export default Room;

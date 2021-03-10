@@ -10,7 +10,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ('id','first_name', 'last_name', 'year_choices', 'attendance_given')
+        fields = ('id','first_name', 'last_name','enrollment_no', 'year_choices', 'attendance_given')
 
 
 class RoomSerializer(serializers.ModelSerializer):

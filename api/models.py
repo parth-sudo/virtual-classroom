@@ -32,12 +32,10 @@ class Student(models.Model):
                     (fourth, 'Fourth')]
     first_name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=20)  
+    enrollment_no = models.CharField(max_length=15,default='01476803118')
     attendance_given = models.BooleanField(default=False)
     year_choices = models.CharField(max_length=10, choices=YEAR_CHOICES, default=first)
 
-    
-    def __str__(self):
-        return self.first_name
 
 class Room(models.Model):
     teacher_name = models.CharField(max_length=30)

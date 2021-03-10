@@ -82,7 +82,7 @@ export default class CreateRoom extends Component {
             <br />
 
             <Button
-             onClick = {this.toRoomPage.bind(this)}
+              to="/rooms"
               variant="contained"
               color="secondary"
               label="Submit"

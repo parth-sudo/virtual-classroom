@@ -30,7 +30,6 @@ class GetTeacherName(APIView):
         if teacher != None:
             Tname = Teacher.objects.filter(name=teacher)
             if len(Tname) > 0:
-                print(Tname)
                 data = TeacherSerializer(Tname[0]).data
                 data['is_host'] = self.request.session.session_key == Tname[0].code
                 return Response(data, status=status.HTTP_200_OK)
@@ -44,6 +43,24 @@ class GetTeacherName(APIView):
 class StudentCreateView(generics.CreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
+class GetStudent(APIView):
+    serializer_class = StudentSerializer
+    lookup_url_kwarg = 'student'
+
+    def get(self, request, format=None):
+        roll_no = request.GET.get(self.lookup_url_kwarg)
+        if roll_no != None:
+            student = Student.objects.filter(enrollment_no=roll_no)
+            if len(student) > 0:
+                data = StudentSerializer(student[0]).data
+                data['is_host'] = self.request.session.session_key == student[0].id
+                return Response(data, status=status.HTTP_200_OK)
+            else:
+                return Response({'Student Not found': 'Invalid roll number'}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({'Bad Request': 'Student not found in request.'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class StudentListView(generics.ListAPIView):
     queryset = Student.objects.all()
@@ -65,4 +82,25 @@ class RoomCreateView(generics.CreateAPIView):
 class RoomListView(generics.ListAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer    
+
+class RoomDeleteView(generics.DestroyAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer    
+
+class GetRoom(APIView):
+    serializer_class = RoomSerializer
+    lookup_url_kwarg = 'id'
+
+    def get(self, request, format=None):
+        ide = request.GET.get(self.lookup_url_kwarg)
+        if ide != None:
+            room = Room.objects.filter(id=ide)
+            if len(room) > 0:
+                data = RoomSerializer(room[0]).data
+                data['is_host'] = self.request.session.session_key == room[0].id
+                return Response(data, status=status.HTTP_200_OK)
+            else:
+                return Response({'Room Not found': 'Invalid Room ide'}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({'Bad Request': 'Code not found in request.'}, status=status.HTTP_400_BAD_REQUEST)
 

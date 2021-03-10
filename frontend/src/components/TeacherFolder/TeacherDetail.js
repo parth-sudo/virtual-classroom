@@ -1,18 +1,26 @@
 import React, { Component } from "react";
 import Teacher from "./Teacher.js";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import CreateRoom from "../RoomFolder/CreateRoom.js";
+import { Link } from "react-router-dom";
 
-// use this component for taking attendance as well.
+
+const LobbyVisibility = false;
+
 const styler = {
   overflow: "auto",
   height: "100vh",
-  marginTop: 20,
+  marginTop: 5,
   display: "block",
   marginLeft: 20,
   align: "center",
 };
 
+const centerStyle = {
+  margin: "auto",
+  width: "300px",
+  padding: "10px",
+};
 
 export default class TeacherDetail extends Component {
   constructor(props) {
@@ -23,7 +31,7 @@ export default class TeacherDetail extends Component {
       code: "",
       studentCount: 0,
       attendenceTaken: false,
-      showRoomForm : false,
+      showRoomForm: false,
     };
     this.teacherName = this.props.match.params.teacherName;
     this.getTeacherDetails();
@@ -53,31 +61,36 @@ export default class TeacherDetail extends Component {
           name={this.teacherName}
           subject={this.state.subject}
           sc={this.state.studentCount}
-          showTDButton = "false"
+          code = {this.state.code}
+          showTDButton="false"
         />
 
         <br />
 
-        {/* {this.state.showRoomForm ? (
-            <div style={{color : 'goldenrod'}}> 
-             <p > Copy this and share with students: <strong style={{color : 'grey'}}> {this.state.code} </strong> </p>
-           </div>
-        ) : (
-            <Button variant="contained" color="secondary" onClick={this.showOTC}>
-            Generate OTC (One Time Code)
+        <div style={centerStyle}>
+          <Button
+            onClick={() => {
+              var f = this.state.showRoomForm;
+              return this.setState({ showRoomForm: !f });
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Create Room
           </Button>
-        )} */}
 
-           <Button onClick={() => { var f = this.state.showRoomForm; 
-              return this.setState({showRoomForm : !f})
-            }} 
-        variant="contained" color="primary">Create Room</Button>
+          {this.state.showRoomForm ? (
+            <CreateRoom teacherName={this.teacherName} />
+          ) : null}
 
-        {this.state.showRoomForm ? (
-          <CreateRoom teacherName = {this.teacherName}/>
-        ) : null}
-           
 
+          <p style={{color : '#5DD220'}}> OR, if you already have a room, click below 👇 </p>
+          
+          <Button  variant="outlined" 
+            color="secondary" 
+            to = "/rooms" component={Link}> Existing Rooms </Button>
+
+       </div>
       </div>
     );
   }

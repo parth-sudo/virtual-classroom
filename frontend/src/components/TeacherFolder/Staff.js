@@ -77,8 +77,7 @@ export default class Staff extends Component {
 
 
         </div>
-     
-       
+
       </div>
     );
   }

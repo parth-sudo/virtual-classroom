@@ -7,12 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
-const mystyle = {
-  margin: "auto",
-  width: "300px",
-  border: "3px solid green",
-  padding: "10px",
-};
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -62,7 +57,7 @@ function Teacher(props) {
           </Typography>
 
           <Typography variant="body2" component="p">
-            Bio.
+           Teacher code = {props.code}
             <br />
           </Typography>
         </CardContent>
@@ -75,8 +70,8 @@ function Teacher(props) {
               to={`/${props.name}`}
               component={Link}
             >
-              {" "}
-              Take Attendance{" "}
+           
+              Take Attendance
             </Button>
           ) : (
             <Button

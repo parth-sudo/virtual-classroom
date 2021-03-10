@@ -5,6 +5,7 @@ import axios from "axios";
 import TeacherDetail from "./TeacherFolder/TeacherDetail.js";
 import StudentArea from "./StudentFolder/StudentArea.js";
 import RoomLobby from "./RoomFolder/RoomLobby.js";
+import Classroom from "./Classroom.js";
 
 import {
   BrowserRouter as Router,
@@ -31,15 +32,7 @@ export default class HomePage extends Component {
       this.setState({
         teacherList: response.data
       });
-      console.log(response.data);
     });
-
-    let arr = [];
-    this.state.teacherList.map((obj) => {
-      arr.push(obj.name);
-      return console.log(obj.name);
-    })
-
 
   }
 

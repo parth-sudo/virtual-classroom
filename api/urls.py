@@ -2,10 +2,9 @@ from django.urls import path
 from .views import (
     TeacherCreateView, TeacherListView, TeacherUpdateView, TeacherDeleteView, 
     GetTeacherName,
-    StudentCreateView, StudentUpdateView, StudentListView, StudentDeleteView,
-    RoomCreateView, RoomListView
+    StudentCreateView, StudentUpdateView, StudentListView, StudentDeleteView, GetStudent,
+    RoomCreateView, RoomListView, RoomDeleteView, GetRoom
 )
-
 
 urlpatterns = [
     path('create-teacher/', TeacherCreateView.as_view()),
@@ -18,8 +17,11 @@ urlpatterns = [
     path('student-list/', StudentListView.as_view()),
     path('update-student/<pk>/', StudentUpdateView.as_view()),
     path('delete-student/<pk>/', StudentDeleteView.as_view()),
+    path('get-student', GetStudent.as_view()),
 
     path('create-room/', RoomCreateView.as_view()),
     path('room-list/', RoomListView.as_view()),
+    path('delete-room/<pk>/', RoomDeleteView.as_view()),
+    path('get-room', GetRoom.as_view()),
 
 ]
